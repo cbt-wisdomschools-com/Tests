@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wisdom Foundation Schools - Test</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b4d1c;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        .header {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .header img {
+            width: 80px;
+            display: block;
+            margin: auto;
+        }
+
+        .timer {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .container {
+            background: #ffffff;
+            color: #000;
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        #questionBox {
+            height: 120px;
+        }
+
+        #answerBox {
+            height: 150px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .prev { background: #6c757d; color: #fff; }
+        .next { background: #198754; color: #fff; }
+        .submit { background: #dc3545; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="timer" id="timer">45:00</div>
+
+    <div class="header">
+        <!-- Replace logo.png with your school logo -->
+        <img src="logo.png" alt="School Logo">
+        <h2>Wisdom Foundation Schools</h2>
+        <h3>Test</h3>
+    </div>
+
+    <div class="container">
+        <label><strong>Question</strong></label>
+        <textarea id="questionBox" readonly></textarea>
+
+        <label><strong>Your Answer</strong></label>
+        <textarea id="answerBox" placeholder="Type your answer here..."></textarea>
+
+        <div class="buttons">
+            <button class="prev" onclick="prevQuestion()">Previous</button>
+            <button class="next" onclick="nextQuestion()">Next</button>
+            <button class="submit" onclick="submitTest()">Submit</button>
+        </div>
+    </div>
+
+<script>
+    /* ===== Static JSON Questions ===== */
+    const questions = [
+        { id: 1, text: "What is a computer?" },
+        { id: 2, text: "Explain the difference between hardware and software." },
+        { id: 3, text: "Define input and output devices." },
+        { id: 4, text: "What is the function of the CPU?" }
+    ];
+
+    let currentIndex = 0;
+    let answers = [];
+
+    function loadQuestion() {
+        document.getElementById("questionBox").value =
+            (currentIndex + 1) + ". " + questions[currentIndex].text;
+
+        document.getElementById("answerBox").value =
+            answers[currentIndex] || "";
+    }
+
+    function nextQuestion() {
+        answers[currentIndex] = document.getElementById("answerBox").value;
+        if (currentIndex < questions.length - 1) {
+            currentIndex++;
+            loadQuestion();
+        }
+    }
+
+    function prevQuestion() {
+        answers[currentIndex] = document.getElementById("answerBox").value;
+        if (currentIndex > 0) {
+            currentIndex--;
+            loadQuestion();
+        }
+    }
+
+    function submitTest() {
+        answers[currentIndex] = document.getElementById("answerBox").value;
+        alert("Test submitted successfully!\n\nAnswers saved in console.");
+        console.log(answers);
+    }
+
+    /* ===== 45 Minutes Countdown Timer ===== */
+    let timeLeft = 45 * 60; // seconds
+
+    function startTimer() {
+        const timerDisplay = document.getElementById("timer");
+
+        const timer = setInterval(() => {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+
+            timerDisplay.textContent =
+                minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                submitTest();
+            }
+            timeLeft--;
+        }, 1000);
+    }
+
+    loadQuestion();
+    startTimer();
+</script>
+
+</body>
+  </html>
