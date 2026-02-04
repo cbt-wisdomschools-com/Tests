@@ -2,172 +2,354 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wisdom Foundation Schools - Test</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #0b4d1c;
+        * {
             margin: 0;
             padding: 0;
-            color: #fff;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+       
+            body {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          font-family: 'Jost', sans-serif;
+          background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+          background-image: url("img/lab1.png");
+          background-repeat: no-repeat;
+          background-size: cover;
         }
 
-        .header {
-            text-align: center;
-            padding: 15px;
+         .main {
+          width: 405px;
+          height: 450px;
+          background: #eee;
+          overflow: hidden;
+          border-radius: 25px;
+          box-shadow: 5px 20px 50px #000;
+          text-align: center;
         }
-
-        .header img {
-            width: 80px;
-            display: block;
-            margin: auto;
-        }
-
-        .timer {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .container {
-            background: #ffffff;
-            color: #000;
-            width: 80%;
-            margin: 20px auto;
-            padding: 20px;
+        .login-container {
+            background-color: rgba(200,200,200,0.4);
             border-radius: 10px;
-        }
-
-        textarea {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            margin-top: 10px;
-            border-radius: 5px;
-            resize: none;
-        }
-
-        #questionBox {
-            height: 120px;
-        }
-
-        #answerBox {
-            height: 150px;
-        }
-
-        .buttons {
+            max-width: 400px;
+            padding: 40px;
             text-align: center;
-            margin-top: 20px;
         }
-
-        button {
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 16px;
-            border: none;
+       
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+       
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+       
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+       
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+       
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            cursor: pointer;
+            font-size: 16px;
+            transition: border 0.3s;
         }
-
-        .prev { background: #6c757d; color: #fff; }
-        .next { background: #198754; color: #fff; }
-        .submit { background: #dc3545; color: #fff; }
+       
+        input:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+       
+        .login-btn {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+       
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+       
+        .error-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+       
+        .demo-accounts {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: left;
+        }
+       
+        .demo-accounts h3 {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+       
+        .demo-accounts p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
-<body>
-
-    <div class="timer" id="timer">45:00</div>
-
-    <div class="header">
-        <!-- Replace logo.png with your school logo -->
-        <img src="logo.png" alt="School Logo">
-        <h2>Wisdom Foundation Schools</h2>
-        <h3>Test</h3>
+<body oncontextmenu="return false">
+  <div class="container-xxxl center">
+    <div>
+      <img src="img/wisdom_logo2.png" style="margin-bottom:15px; width: 400px; height: 120px" />
     </div>
 
-    <div class="container">
-        <label><strong>Question</strong></label>
-        <textarea id="questionBox" readonly></textarea>
-
-        <label><strong>Your Answer</strong></label>
-        <textarea id="answerBox" placeholder="Type your answer here..."></textarea>
-
-        <div class="buttons">
-            <button class="prev" onclick="prevQuestion()">Previous</button>
-            <button class="next" onclick="nextQuestion()">Next</button>
-            <button class="submit" onclick="submitTest()">Submit</button>
-        </div>
+  
+    
+    <div class="login-container">
+        <h3><label style="color: red; font-size: 25px;">WISFOS TEST PORTAL</label></h3>
+        <p class="subtitle"  style="color: lime; font-size: 15px;">Please sign in to your account</p>
+       
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username"  style="color: red; font-size: 18px; text-align: center;">Enter Your Username  Here</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+            </div>
+           
+            <div class="input-group">
+                <label for="password"  style="color: orange; font-size: 18px; text-align: center;">Enter Your Password Here</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <div style="margin-top: 10px;">
+                      <label style="color: lime; font-size: 15px;">
+                        <input type="checkbox" id="altLoginCheck">
+                       Click the checkbox to verify and click on Sign In
+                      </label>
+            </div>
+           
+            <button type="submit" class="login-btn">Sign In</button>
+           
+            <div class="error-message" id="errorMessage">
+                Invalid username or password. Please try again.
+            </div>
+            <label style="color: lime; font-size: 25px;">WISFOS CTEST PORTAL</label>
+        </form>
+       
+    
     </div>
 
-<script>
-    /* ===== Static JSON Questions ===== */
-    const questions = [
-        { id: 1, text: "What is a computer?" },
-        { id: 2, text: "Explain the difference between hardware and software." },
-        { id: 3, text: "Define input and output devices." },
-        { id: 4, text: "What is the function of the CPU?" }
-    ];
+    <script>
+        // User data array with username, password, and image file
+     
+        const users = [
+                // JSS1 STUDENTS BOYS
+                { username: "Shehu Ahmeed Marvelous", password: "wfs101", image: "wfs101.png" },
 
-    let currentIndex = 0;
-    let answers = [];
+                // JSS1 STUDENTS GIRLS
+                { username: "Fasuan Obaloluwa Adebowale", password: "wfs102", image: "wfs102.png" },
 
-    function loadQuestion() {
-        document.getElementById("questionBox").value =
-            (currentIndex + 1) + ". " + questions[currentIndex].text;
+               // JSS2 STUDENTS BOYS
+                { username: "George Emmanuel", password: "wfs201", image: "wfs201.png" },
+                { username: "Adejemilua Peter", password: "wfs202", image: "wfs202.png" },
+                { username: "Oke Ayobami", password: "wfs203", image: "wfs203.png" },
+                { username: "Ibrahim Abdulsalami", password: "wfs204", image: "wfs204.png" },
+                { username: "Chukwuemeka Emmanuel", password: "wfs205", image: "wfs205.png" },
+                { username: "Olorungbohunmi Ayo", password: "wfs206", image: "wfs206.png" },
 
-        document.getElementById("answerBox").value =
-            answers[currentIndex] || "";
-    }
+                // JSS2 STUDENTS GIRLS
+                { username: "Shinaola Treasure", password: "wfs206", image: "wfs206.png" },
+                { username: "Dada Tiwalade", password: "wfs207", image: "wfs207.png" },
+                { username: "Nofiu Habibat", password: "wfs208", image: "wfs208.png" },
+                { username: "Fasunan Adetutu", password: "wfs209", image: "wfs209.png" },
 
-    function nextQuestion() {
-        answers[currentIndex] = document.getElementById("answerBox").value;
-        if (currentIndex < questions.length - 1) {
-            currentIndex++;
-            loadQuestion();
-        }
-    }
 
-    function prevQuestion() {
-        answers[currentIndex] = document.getElementById("answerBox").value;
-        if (currentIndex > 0) {
-            currentIndex--;
-            loadQuestion();
-        }
-    }
+                // JSS3 STUDENTS BOYS
+                { username: "Abdulateef Qudus Ademola", password: "wfs301", image: "wfs301.png" },
+                { username: "Afeez Abdulahi Pelumi", password: "wfs302", image: "wfs302.png" },
+                { username: "Isaac Richard Feranmi", password: "wfs303", image: "wfs303.png" },
+                { username: "Ogunmiloyo Inioluwa David", password: "wfs304", image: "wfs304.png" },
+                { username: "Oladiti David Henry", password: "wfs305", image: "wfs305.png" },
 
-    function submitTest() {
-        answers[currentIndex] = document.getElementById("answerBox").value;
-        alert("Test submitted successfully!\n\nAnswers saved in console.");
-        console.log(answers);
-    }
+                // JSS3 STUDENTS GIRLS
+                { username: "Adebayo Khadijahat Iyanu", password: "wfs506", image: "wfs506.png" },
+                { username: "Akindele Dunsi Faith", password: "wfs507", image: "wfs507.png" },
+                { username: "Olusola Divine Oluwaseun", password: "wfs508", image: "wfs508.png" },
+                { username: "Onuchie Amarachukwu Esther", password: "wfs509", image: "wfs509.png" },
+                { username: "Umar Fatima Lamine", password: "wfs510", image: "wfs510.png" },
 
-    /* ===== 45 Minutes Countdown Timer ===== */
-    let timeLeft = 45 * 60; // seconds
+                  // SS1 STUDENTS BOYS
+                { username: "Ajisafe Ezekeil", password: "wfs401", image: "wfs401.png" },
+                { username: "Omolade Darasimi", password: "wfs402", image: "wfs402.png" },
+                { username: "Owolabi Timilehin Testimony", password: "wfs403", image: "wfs403.png" },
+                { username: "Umar Aliyu", password: "wfs404", image: "wfs404.png" },
+                { username: "Dada Faramade", password: "wfs405", image: "wfs405.png" },
+                { username: "Bayode Goodness Opemipo", password: "wfs406", image: "wfs406.png" },
 
-    function startTimer() {
-        const timerDisplay = document.getElementById("timer");
+                // SS1 STUDENTS GIRLS
+                { username: "Oke Inumidun", password: "wfs407", image: "wfs407.png" },
+                { username: "Akindele Mayorkun Rachael", password: "wfs408", image: "wfs408.png" },
+                { username: "Lawal Desmond", password: "wfs409", image: "wfs409.png" },
 
-        const timer = setInterval(() => {
-            let minutes = Math.floor(timeLeft / 60);
-            let seconds = timeLeft % 60;
+               
+                // SS2 STUDENTS BOYS
+                { username: "Abodunde Timilehin Ayomide", password: "wfs501", image: "wfs501.png" },
+                { username: "Adebisi Manfouz Adewole", password: "wfs502", image: "wfs502.png" },
+                { username: "Adekunle Samuel Ayomikun", password: "wfs503", image: "wfs503.png" },
+                { username: "Adeyemi Obasanjo Toeeb", password: "wfs504", image: "wfs504.png" },
+                { username: "Ikpengwa Emmanuel", password: "wfs505", image: "wfs505.png" },
+                { username: "Olofintoye Victor Omibarewa", password: "wfs506", image: "wfs506.png" },
+                { username: "Olumide Erioluwa Emmanuel", password: "wfs507", image: "wfs507.png" },
+                { username: "Oluwadare Praise Ayowamide", password: "wfs508", image: "wfs508.png" },
+                { username: "Gabriel Victor Kachisieme", password: "wfs509", image: "wfs509.png" },
 
-            timerDisplay.textContent =
-                minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                // SS2 STUDENTS GIRLS
+                { username: "Adeola Precious Eniola", password: "wfs510", image: "wfs510.png" },
+                { username: "Afolayan Faith Toluwanimi", password: "wfs511", image: "wfs511.png" },
+                { username: "Olorunmaiye Nifemi Faith", password: "wfs512", image: "wfs512.png" },
+                { username: "Olowoyo Kemisola Glory", password: "wfs513", image: "wfs513.png" },
+                { username: "Ariyo Elizabeth Celestina", password: "wfs514", image: "wfs514.png" },
 
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                submitTest();
+                // SS3 STUDENTS BOYS
+                { username: "Abdulateef Abdulbasit", password: "wfs601", image: "wfs601.png" },
+                { username: "Adediran Ayomide", password: "wfs602", image: "wfs602.png" },
+                { username: "Atolagbe Peace", password: "wfs603", image: "wfs603.png" },
+                { username: "Chimobi Vincent", password: "wfs604", image: "wfs604.png" },
+                { username: "Dada Babalola Joshua", password: "wfs605", image: "wfs605.png" },
+                { username: "Enemchukwu Michael", password: "wfs606", image: "wfs606.png" },
+                { username: "Ifeanyi Augustine", password: "wfs607", image: "wfs607.png" },
+                { username: "Oladiti Inumidun", password: "wfs608", image: "wfs608.png" },
+                { username: "Olusola Dennis", password: "wfs609", image: "wfs609.png" },
+                { username: "Umar Muhammed", password: "wfs610", image: "wfs610.png" },
+
+                // SS3 STUDENTS GIRLS
+                { username: "Abe Favour", password: "wfs611", image: "wfs611.png" },
+                { username: "Afinjuomo Mercy", password: "wfs612", image: "wfs612.png" },
+                { username: "Ajisola Rachael", password: "wfs613", image: "wfs613.png" },
+                { username: "Enemchukwu Victoria", password: "wfs614", image: "wfs614.png" },
+                { username: "Omodaratan Diamond", password: "wfs615", image: "wfs615.png" },
+                { username: "Ibrahim Ganiyat Oluwaseun", password: "wfs616", image: "wfs616.png" },
+                { username: "Chibueze Victoria", password: "wfs617", image: "wfs617.png" },
+
+                // ADMIN (optional)
+                { username: "admin", password: "admin", image: "admin.png" }
+            ];
+
+        // Handle form submission
+       /* document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+           
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+           
+            // Check if credentials match any user
+            const matchedUser = users.find(user =>
+                user.username === username && user.password === password
+            );
+           
+            if (matchedUser) {
+                // Store user data in sessionStorage for the instructions page
+                sessionStorage.setItem('loggedInUser', JSON.stringify(matchedUser));
+               
+                // Redirect to instructions page
+                window.location.href = 'instructions1.html';
+            } else {
+                // Show error message
+                errorMessage.style.display = 'block';
+               
+                // Clear password field
+                document.getElementById('password').value = '';
             }
-            timeLeft--;
-        }, 1000);
-    }
+        });*/
 
-    loadQuestion();
-    startTimer();
-</script>
 
+
+          // FIRST LOGIN METHOD (loggedInUser)
+            // =============================
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+              event.preventDefault();
+
+              const username = document.getElementById('username').value.trim();
+              const password = document.getElementById('password').value.trim();
+              const errorMessage = document.getElementById('errorMessage');
+              const altCheck = document.getElementById('altLoginCheck');
+
+              // --- Primary validation ---
+              const matchedUser = users.find(user =>
+                user.username === username && user.password === password
+              );
+
+              if (matchedUser) {
+                sessionStorage.setItem('loggedInUser', JSON.stringify(matchedUser));
+                console.log("✅ Primary validation passed");
+
+                // --- If checkbox is checked, also run alternate validation ---
+                if (altCheck.checked) {
+                  console.log("🔄 Running alternate validation...");
+                  validateLoginComparison(username, password);
+                } else {
+                  // Go to instructions1.html for main validation only
+                  window.location.href = 'dashboard.html';
+                }
+
+              } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('password').value = '';
+              }
+            });
+
+            // =============================
+            // SECOND LOGIN METHOD (for comparison)
+            // =============================
+            function validateLoginComparison(username, password) {
+              if (!username || !password) {
+                alert("Please enter both username and password.");
+                return;
+              }
+
+              const user = users.find(
+                (u) => u.username.toLowerCase() === username.toLowerCase() && u.password === password
+              );
+
+              if (user) {
+                sessionStorage.setItem('username', user.username);
+                sessionStorage.setItem('image', user.image);
+                console.log("✅ Alternate validation passed");
+                window.location.href = 'dashboard.html';
+              } else {
+                alert("Invalid username or password in alternate check.");
+              }
+            }
+
+    </script>
 </body>
-  </html>
+</html>
